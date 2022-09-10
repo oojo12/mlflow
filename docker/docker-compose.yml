@@ -1,7 +1,8 @@
 version: "3.9"  # optional since v1.27.0
 services:
   tracking:
-    build: .
-    args:
+    build:
+      context: .
+      args:
         VERSION: ${GITHUB_REF_NAME}
     entrypoint: ["mlflow", "server"]
