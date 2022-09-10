@@ -44,6 +44,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           build-args: |
-            VERSION=${{ steps.meta.outputs.tags }}
+            VERSION=${{ steps.meta.outputs.version }}
           file: ./docker/Dockerfile
           
