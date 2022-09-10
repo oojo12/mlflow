@@ -32,12 +32,12 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ghcr.io/mlflow/mlflow
+            ghcr.io/oojo12/mlflow
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=tag
       
-      - name: Build and Push Base Image
+      - name: Build and Push Image
         uses: docker/build-push-action@v3
         with:
           context: .
@@ -45,16 +45,5 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           build-args: |
             VERSION=${{ steps.meta.outputs.tags }}
-          file: ../../docker/BaseDockerfile
-    
-      - name: Build and Push Tracking Image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          build-args: |
-            VERSION=${{ steps.meta.outputs.tags }}
-            ACCOUNT=mlflow
-          file: ../../docker/TrackingDockerfile
+          file: ./docker/Dockerfile
           
